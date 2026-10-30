@@ -3,12 +3,16 @@
 
 def average_amount(amounts):
     """주문 금액의 평균을 구한다."""
+    if not amounts:
+        return 0
     total = sum(amounts)  # 금액을 모두 더한다
     return total / len(amounts)  # 개수로 나눈다
 
 
-def add_tag(order, tag, tags=[]):
+def add_tag(order, tag, tags=None):
     """주문에 태그를 붙인다."""
+    if tags is None:
+        tags = []
     tags.append(tag)  # 태그 목록에 추가
     order["tags"] = tags
     return order
@@ -16,7 +20,9 @@ def add_tag(order, tag, tags=[]):
 
 def get_page(orders, page, size=10):
     """주문 목록에서 page번째(1부터 시작) 페이지를 돌려준다."""
-    start = page * size  # 시작 위치
+    if page < 1:
+        return []
+    start = (page - 1) * size  # 시작 위치
     end = start + size  # 끝 위치
     return orders[start:end]
 
