@@ -3,7 +3,7 @@
 
 def to_label(score: float) -> str:
     """긍정 확률이 0.5 이상이면 positive, 아니면 negative를 반환한다."""
-    return "positive" if score >= 0.5 else "negative"
+    return "positive" if score > 0.5 else "negative"
 
 
 def to_temperature(score: float) -> float:
