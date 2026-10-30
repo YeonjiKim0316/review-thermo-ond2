@@ -27,4 +27,24 @@ class AnalyzeResponse(BaseModel):
     temperature: float  # 리뷰 온도 (0~100)
     mismatch: bool  # 별점과 내용이 반대인가
 
+
+# 공백만 있는 문자열을 제외하고 최소 1자 이상인 ID 타입
+ReviewId = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
+
+
+class CouponIssueRequest(BaseModel):
+    """2차: 쿠폰 발급 요청"""
+
+    review_id: ReviewId
+    text: Text500
+
+
+class CouponIssueResponse(BaseModel):
+    """2차: 쿠폰 발급 결과"""
+
+    issued: bool
+    coupon_type: Literal["APOLOGY", "THANKS"] | None = None
+    amount: int | None = None
+    code: str | None = None
+
 # © 2026 김연지. All rights reserved. 수강생 개인 학습용 · 무단 강의·복제·배포·수정 금지 (LICENSE.md)

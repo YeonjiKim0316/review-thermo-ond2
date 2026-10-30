@@ -24,12 +24,13 @@
 
 - `app/thermo.py` : to_label, to_temperature, is_mismatch 3개 함수
 - `tests/test_thermo.py` : 내가 직접 쓴 테스트 2개 + 예시표의 나머지 행 (세션 2)
-- 쿠폰 API (세션 4): `SPEC_COUPON.md`를 보고 `app/schemas.py`(요청/응답 모양), `app/main.py`(주소), 규칙 함수를 만듭니다. 규칙 함수를 어느 파일에 둘지는 계획을 보고 정합니다(예: `app/coupon.py`).
+- 쿠폰 API (세션 4): `app/coupon.py` (규칙 및 중복 방지), `app/schemas.py` (요청/응답 모양), `app/main.py` (/v1/coupons/issue 주소)
+- `tests/test_coupon.py` : `SPEC_COUPON.md`의 R1~R5 예시표 테스트
 
 ## 실행 방법
 
 - 서버 실행: uvicorn app.main:app --reload
-- 테스트 실행: `pytest -v`
+- 테스트 실행: `.venv\Scripts\pytest -v` (가상환경의 pytest를 사용하여 패키지 버전 충돌을 방지합니다)
 
 ## 허락 없이 고치면 안 되는 파일
 
@@ -38,7 +39,6 @@
 - `tests/test_api.py`, `tests/test_api_coupon.py`, `tests/conftest.py`
 - `static/` 폴더 전체
 - `app/sentiment.py`, `app/deps.py`
-- `app/main.py`, `app/schemas.py` (세션 4에서 쿠폰 API를 만들 때만 고칩니다. 그 전에는 고치지 않습니다)
 - `.agents/skills/` 폴더, `.agents/mcp_config.json`, `.vscode/mcp.json` (내가 직접 고칩니다. AI는 고치기 전에 먼저 물어봅니다)
 - 내가 하지 말라고 하고 싶은 것: 반말 금지
 
